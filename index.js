@@ -1,14 +1,14 @@
-const fs=require("fs")
-const second=require("./second")
-console.log("First Node JS Application-> second run")
-console.log(second.people);
-second.hello();
+var express=require("express");
+var app=express();
 
-fs.readFile("package.json","utf-8",function(err,data){
-    if(err)
-      console.log("unable to read file: " + err.message)
-    else
-      console.log(data)
+app.get("/",function(request,response){
+    response.send("Node JS is working");
 })
 
-console.log("after file reading")
+app.get("/greet/:name",function(request,response){
+    response.send("Hello!!!"+request.params.name);
+})
+
+app.listen("3000",function(){
+    console.log("server is started on port number 3000")
+})
