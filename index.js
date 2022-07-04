@@ -1,7 +1,8 @@
 var express=require("express");
 var app=express();
 var path=require("path");
-
+app.use(express.static(path.join(__dirname, "public/styles/")));
+app.use(express.static(path.join(__dirname, "public/scripts/")));
 app.get("/",function(request,response){
     response.send("Node JS is working");
 })
