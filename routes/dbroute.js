@@ -14,4 +14,13 @@ route.post("/people",function(request,response){
     })
 })
 
+route.get("/people",function(request,response){
+    dbops.getPeople(function(err,data){
+        if(err)
+          response.send("No Data found")
+        else
+          response.render("people",{people:data,programmer: "Joseph"})
+    })
+})
+
 module.exports=route

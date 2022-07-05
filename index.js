@@ -10,6 +10,9 @@ app.use(express.static(path.join(__dirname, "public/styles/")));
 app.use(express.static(path.join(__dirname, "public/scripts/")));
 app.use(express.static(path.join(__dirname, "node_modules/")))
 
+app.set('views', path.join(__dirname, 'public/views'));//setting the path of template files
+app.set('view engine', 'pug'); //configuring view Engine
+
 app.use("/dbpages",dbroute)
 app.get("/",function(request,response){
     response.send("Node JS is working");
