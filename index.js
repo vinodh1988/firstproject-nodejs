@@ -2,6 +2,7 @@ var express=require("express");
 var app=express();
 var path=require("path");
 var dbroute= require("./routes/dbroute");
+var apiroute= require("./routes/apiroute");
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
@@ -14,6 +15,8 @@ app.set('views', path.join(__dirname, 'public/views'));//setting the path of tem
 app.set('view engine', 'pug'); //configuring view Engine
 
 app.use("/dbpages",dbroute)
+app.use("/api",apiroute)
+
 app.get("/",function(request,response){
     response.send("Node JS is working");
 })
