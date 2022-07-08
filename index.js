@@ -3,6 +3,20 @@ var app=express();
 var path=require("path");
 var dbroute= require("./routes/dbroute");
 var apiroute= require("./routes/apiroute");
+var mongoroute= require("./routes/mongoroutes");
+
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/nodecourse');
+
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+
+db.once('open', function() {
+  console.log("mongo db connection is open");
+});
+
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
@@ -16,6 +30,7 @@ app.set('view engine', 'pug'); //configuring view Engine
 
 app.use("/dbpages",dbroute)
 app.use("/api",apiroute)
+app.use("/mongoapi",mongoroute)
 
 app.get("/",function(request,response){
     response.send("Node JS is working");
